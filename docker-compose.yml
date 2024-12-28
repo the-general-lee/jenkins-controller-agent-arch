@@ -1,0 +1,40 @@
+version: "2.29.7"
+
+services:
+  master:
+    image: jenkins/jenkins:lts-jdk17
+    privileged: true
+    user: root
+    container_name: master-jenkins
+    ports:
+      - 50001:8080
+      - 50002:50000
+    volumes:
+      - /var/lib/jenkins:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  nodejs:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    image: ahmedsakr98/node-jenkins-agent
+    privileged: true
+    user: root
+    container_name: slave-jenkins-node
+    expose:
+      - 22
+    environment:
+      - JENKINS_AGENT_SSH_PUBKEY=$JENKINS_AGENT_SSH_PUBKEY
+  
+  angular:
+    build:
+      context: .
+      dockerfile: Dockerfile.angular
+    image: ahmedsakr98/angular-jenkins-agent
+    privileged: true
+    user: root
+    container_name: slave-jenkins-angular
+    expose:
+      - 22
+    environment:
+      - JENKINS_AGENT_SSH_PUBKEY=$JENKINS_AGENT_SSH_PUBKEY
