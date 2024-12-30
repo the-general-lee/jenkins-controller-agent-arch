@@ -7,4 +7,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -y nodejs && \
     npm install -g @angular/cli
 
+RUN apt install chromium-browser
+ENV CHROME_BIN="/usr/bin/chromium-browser"
+
 RUN node --version && ng --version
