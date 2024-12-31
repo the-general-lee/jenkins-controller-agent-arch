@@ -23,6 +23,21 @@ Master node communicate jobs to these static container agents through ssh, the a
 - **Jenkins agents (SSH-Servers)**: contain the public key to compare with each attemp from the controller.
 
 ## Prerequisites
+First you need to create the private and public keys, avoiding using rsa since jenkins automation doesn't accept it, it gives all kinds of errors
+`ssh-keygen -t ed25519 -f rsa_agent`
 
+for debugging you can `exec` into the master container and `ssh -i home/.ssh/key jenkins@dockerIp` into any agent
+
+For symmetry I used a controller container (I didn't rely on the virtual machine to act as the jenkins controller)
+
+as such the users, groups and permissions don't translate really well so git causeses permissions issues, the following 
+
+command needs run in the ***controller container*** `git config --global --add safe.directory '*'`
+
+Also inside each ***agent container*** you need to run `groupadd -g 997 docker && usermod -aG docker jenkins` where 997 
+
+was the docker group number in my original VM so this is actually really catered to my project you should check your docker 
+
+group number on your original machine and paste it in the previous command
 
 ## Usage
