@@ -23,7 +23,7 @@ Master node communicate jobs to these static container agents through ssh, the a
 - **Jenkins agents (SSH-Servers)**: contain the public key to compare with each attemp from the controller.
 
 ## Prerequisites
-- Black Square: First you need to create the private and public keys, avoiding using rsa since jenkins automation doesn't accept it, it gives all kinds of errors
+* First you need to create the private and public keys, avoiding using rsa since jenkins automation doesn't accept it, it gives all kinds of errors
 `ssh-keygen -t ed25519 -f rsa_agent`
 
 for debugging you can `exec` into the master container and `ssh -i home/.ssh/key jenkins@dockerIp` into any agent
