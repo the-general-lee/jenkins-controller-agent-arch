@@ -45,7 +45,7 @@ group number on your original machine and paste it in the previous command*
 1. `docker-compose up master` to turn on the controller node.
 2. `docker-compose up nodejs` and `docker-compose up angular` to turn on the two agent nodes.
 3. proceed to jenkins instance run by controller container and run each pipeline.
-  1. Each pipeline references one of the repos linked for the node.js and angular apps.
-  2. Each repo contains a Jenkinsfile with build, test and deployment stages.
-  3. Each Jenkinsfile contains the name of the agent node that is going to run it.
+    1. Each pipeline references one of the repos linked for the node.js and angular apps.
+    2. Each repo contains a Jenkinsfile with build, test and deployment stages.
+    3. Each Jenkinsfile contains the name of the agent node that is going to run it.
 4. Each agent node is prepared with the required environments and libraries needed to build, test and deploy its type of apps.
