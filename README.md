@@ -34,10 +34,11 @@ as such the users, groups and permissions don't translate really well so git cau
 
 command needs run in the ***controller container*** `git config --global --add safe.directory '*'`
 
+
+
+
 Also inside each ***agent container*** you need to run `groupadd -g 997 docker && usermod -aG docker jenkins` where 997 
-
 was the docker group number in my original VM so this is actually really catered to my project you should check your docker 
-
 group number on your original machine and paste it in the previous command
 
 ## Usage
